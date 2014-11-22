@@ -88,29 +88,18 @@ public class QOTDModel {
     /**
      * Retrieve Quote from a website and put it into a String, 
      * Afterwards we will make it into a json object so it can be printed out to the client.
+     * @throws Exception 
      */
-
+    public static void main(String []args) throws Exception{
+    	String test = getQuote();
+    	System.out.println(test);
+    }
      	
-//  	public String getQuote(){
-//  		String q = "";
-//  		String[] key = {"qotd"};
-//  		try {
-//  			resultSet = qb.selectFrom("dailyupdate").all().ExecuteQuery();
-//			while(resultSet.next()) {
-//				q = resultSet.getString("qotd");
-//			}
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return q;
-//  	}
-     	
-      	public String getQuote() throws Exception{
-      		String json = readUrl("http://dist-sso.it-kartellet.dk/quote/");
-    		System.out.println(json);
-      		return json;
-      	}
+  	public static String getQuote() throws Exception{
+  		String quoteOfTheDay = readUrl("http://dist-sso.it-kartellet.dk/quote/");
+		System.out.println(quoteOfTheDay);
+  		return quoteOfTheDay;
+  	}
   	
   	
   	 public void updateQuote(){
