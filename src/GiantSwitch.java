@@ -61,10 +61,10 @@ public class GiantSwitch {
 			answer = SW.createNewCalender(CC.getUserName(), CC.getCalenderName(), CC.getPublicOrPrivate());
 			break;
 		
-		case "deleteCalender":
-			DeleteCalender DC = (DeleteCalender)gson.fromJson(jsonString, DeleteCalender.class);
-			System.out.println(DC.getCalenderName()+ "Den har lagt det nye ind i klassen");
-			answer = SW.deleteCalender(DC.getUserName(), DC.getCalenderName());
+		case "deleteCalendar":
+			DeleteCalendar DC = (DeleteCalendar)gson.fromJson(jsonString, DeleteCalendar.class);
+			System.out.println(DC.getCalendarName()+ "Den har lagt det nye ind i klassen");
+			answer = SW.deleteCalendar(DC.getUserName(), DC.getCalendarName());
 			break;
 		
 		case "saveImportedCalender":
@@ -72,8 +72,8 @@ public class GiantSwitch {
 			
 			break;
 			
-		case "getCalender":
-			System.out.println("Recieved getCalender");
+		case "getCalendar":
+			System.out.println("Recieved getCalendar");
 			break;
 
 		case "getEvents":
@@ -143,12 +143,12 @@ public class GiantSwitch {
 			return "getNote";
 		} else if (ID.contains("deleteNote")){
 			return "deleteNote";
-		}else if  (ID.contains("deleteCalender")){
-			return "deleteCalender";
+		}else if  (ID.contains("deleteCalendar")){
+			return "deleteCalendar";
 		} else if (ID.contains("getClientForecast")) {
 			return "getClientForecast";
-		} else if (ID.contains("saveImportedCalender")) {
-			return "saveImportedCalender";
+		} else if (ID.contains("saveImportedCalendar")) {
+			return "saveImportedCalendar";
 		}else if (ID.contains("importCourse")) {
 			return "importCourse";
 		} else if (ID.contains("exportCourse")) {
@@ -159,14 +159,14 @@ public class GiantSwitch {
 			return "logIn";
 		} else if (ID.contains("logOut")) {
 			return "logOut";
-		} else if (ID.contains("getCalender")) {
-			return "getCalender";
+		} else if (ID.contains("getCalendar")) {
+			return "getCalendar";
 		} else if (ID.contains("createEvent")) {
 			return "createEvent";
 		} else if (ID.contains("deleteEvent")) {
 			return "deleteEvent"; 
-		} else if (ID.contains("createCalender")) {
-			return "createCalender";
+		} else if (ID.contains("createCalendar")) {
+			return "createCalendar";
 		}
 
 		else
