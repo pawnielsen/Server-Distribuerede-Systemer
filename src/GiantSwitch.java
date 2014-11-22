@@ -129,7 +129,7 @@ public class GiantSwitch {
 		
 	}
 
-	//Creates a loooong else if statement, which checks the JSon string which keyword it contains, and returns the following 
+	//Creates a long else if statement, which checks the JSon string which keyword it contains, and returns the following 
 	//keyword if
 	public String Determine(String ID) {
 

@@ -1,0 +1,15 @@
+/.keep
+/DB-overblik.jpg
+/ERMaster.erm
+/GUI/
+/Images/
+/JsonClasses/
+/SQLFiles/
+/config/
+/config-dist.json
+/config.json
+/controller/
+/databaseMethods/
+/endorsed/
+/fileUpload/
+/model/
