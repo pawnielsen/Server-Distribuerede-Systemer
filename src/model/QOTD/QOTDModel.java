@@ -105,6 +105,7 @@ public class QOTDModel {
 //		}
 //		return q;
 //  	}
+     	
       	public String getQuote() throws Exception{
       		String json = readUrl("http://dist-sso.it-kartellet.dk/quote/");
     		System.out.println(json);
