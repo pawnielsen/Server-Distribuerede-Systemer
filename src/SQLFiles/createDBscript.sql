@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS cbscalendar;
+CREATE DATABASE IF NOT EXISTS cbscalendar; //3
 use cbscalendar;
 SET SESSION FOREIGN_KEY_CHECKS=0;
 
@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS events
 	end datetime NOT NULL,
 	name varchar(0) NOT NULL,
 	text text NOT NULL,
+	active int NOT NULL DEFAULT '1',
 	-- Decides wether the event is an import-event or user created
 	-- 
 	customevent boolean COMMENT 'Decides wether the event is an import-event or user created
@@ -64,8 +65,8 @@ CREATE TABLE IF NOT EXISTS notes
 	eventId int NOT NULL,
 	createdBy varchar(255) NOT NULL,
 	text text,
-	dateTime datetime NOT NULL,
-	active bit,
+	dateTime datetime NOT NULL default NOW(),
+	active bit NOT NULL,
 	PRIMARY KEY (noteid)
 );
 
