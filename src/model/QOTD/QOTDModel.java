@@ -24,7 +24,7 @@ public class QOTDModel {
 
 	private ArrayList<QOTD> qotdlist = new ArrayList<>();
 	
-	QOTD qotdlist2 = new QOTD(null, null, null);
+    QOTD qotdlist2 = new QOTD(null, null, null);
     QueryBuilder qb = new QueryBuilder();
     
     private ResultSet resultSet;
@@ -89,20 +89,27 @@ public class QOTDModel {
      * Retrieve Quote from a website and put it into a String, 
      * Afterwards we will make it into a json object so it can be printed out to the client.
      */
-  	public String getQuote(){
-  		String q = "";
-  		String[] key = {"qotd"};
-  		try {
-  			resultSet = qb.selectFrom("dailyupdate").all().ExecuteQuery();
-			while(resultSet.next()) {
-				q = resultSet.getString("qotd");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return q;
-  	}
+
+     	
+//  	public String getQuote(){
+//  		String q = "";
+//  		String[] key = {"qotd"};
+//  		try {
+//  			resultSet = qb.selectFrom("dailyupdate").all().ExecuteQuery();
+//			while(resultSet.next()) {
+//				q = resultSet.getString("qotd");
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return q;
+//  	}
+      	public String getQuote() throws Exception{
+      		String json = readUrl("http://dist-sso.it-kartellet.dk/quote/");
+    		System.out.println(json);
+      		return json;
+      	}
   	
   	
   	 public void updateQuote(){
