@@ -90,10 +90,6 @@ public class QOTDModel {
      * Afterwards we will make it into a json object so it can be printed out to the client.
      * @throws Exception 
      */
-    public static void main(String []args) throws Exception{
-    	String test = getQuote();
-    	System.out.println(test);
-    }
      	
   	public static String getQuote() throws Exception{
   		String quoteOfTheDay = readUrl("http://dist-sso.it-kartellet.dk/quote/");
