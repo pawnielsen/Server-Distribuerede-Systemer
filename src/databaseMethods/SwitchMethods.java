@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import model.Model;
 import model.QOTD.QOTDModel;
 import model.QueryBuild.QueryBuilder;
+import model.note.Note;
 
 public class SwitchMethods extends Model
 {
@@ -21,6 +22,37 @@ public class SwitchMethods extends Model
 	 * @throws SQLException
 	 */
 
+	public boolean createuser(String userName, String password)throws SQLException{
+		String[] keys = {"email", "active", "password"}; //Der i DB at der skal oprettes
+		String[] values = {userName, "1", password}; //De værdier der skal oprettes med
+		if(qb.insertInto("users", keys).values(values).Execute()){
+		return true;
+		}else{
+		return false;
+		}
+	}
+	
+	public boolean createEvent(String type, String location, String createdby, String startTime,
+			String endTime, String name, String text, String customEvent, String CalendarID) throws SQLException
+			{
+		String[] keys = {"type", "location", "createdby", "startTime", "endTime", "name", 
+				"text", "customEvent", "CalendarID"};
+		String[] values = {type, location, createdby, startTime, endTime, name, text, customEvent, CalendarID};
+		if(qb.insertInto("events", keys).values(values).Execute()){
+			return true;
+			}else{
+				return false;
+			}
+		}
+	
+	public void createNote(int noteID, String text, String dateTime, String createdBy, int isActive, int eventID){
+		String returns = "";
+		Note note = new Note();
+		//return note.CreateNote(noteID, text, dateTime, createdBy, eventID, 1);
+	//		
+	}
+	
+	
 	public String createNewCalender (String userName, String calenderName, int privatePublic) throws SQLException
 	{
 		String stringToBeReturned ="";
