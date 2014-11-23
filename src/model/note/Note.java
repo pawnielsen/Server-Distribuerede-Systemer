@@ -20,32 +20,48 @@ public class Note extends Model{
 			
 			String nId = String.valueOf(noteID);
 			String eId = String.valueOf(eventID);
+			String aId = String.valueOf(isActive);
 			
 			String[] fields = {"noteId", "eventId", "createdBy", "text", "dateTime", "active"};
-			String[] values = {nId, eId, createdBy, text, dateTime, String.valueOf(isActive)};
+			String[] values = {nId, eId, createdBy, text, dateTime, aId};
 			try {
 				qb.insertInto("notes", fields).values(values).Execute();
 				
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 
-		public void DeleteNote (int noteID) throws SQLException {
+		public int DeleteNote (int noteID) throws SQLException 
+		{
+			//operatationCode fortæller hvilken handling der blev udført
+			// 0 = ingen handling blev gennemført
+			// 1 = noten blev slettet med succes
+			// 2 = der var en fejl, og noten blev ikke slettet
+			int operationCode = 0;			
 			
-					notes = GetNote(noteID);
-					notes.setActive(0);
-					SaveNote(notes);
-					
-				}
+			try
+			{
+				notes = GetNote(noteID);
+				notes.setActive(0);
+				SaveNote(notes);
+				operationCode = 1;
+
+			}
+			catch(SQLException e1)
+			{
+			e1.printStackTrace();
+			operationCode = 2;
+			}
+			
+			return operationCode;
+		}
 
 		public NoteModel GetNote (int noteID) throws SQLException{
 			
 			try {
 				resultSet = qb.selectFrom("notes").where("noteID", "= ", String.valueOf(noteID)).ExecuteQuery();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 				while(resultSet.next()){
@@ -74,7 +90,7 @@ public class Note extends Model{
 			int noteID = note.getNoteID();
 			
 			String[] fields = {"eventID", "createdBy", "text", "dateTime", "Active"};
-			String[] values = {String.valueOf(noteID), text, dateTime, createdBy, String.valueOf(isActive)};
+			String[] values = {String.valueOf(eventID), createdBy, text, dateTime, String.valueOf(isActive)};
 			qb.update("notes", fields, values).where("noteID", "=", String.valueOf(noteID));
 				
 		}
