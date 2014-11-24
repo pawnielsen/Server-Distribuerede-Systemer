@@ -22,9 +22,23 @@ public class SwitchMethods extends Model
 	 * @throws SQLException
 	 */
 
+	public int deleteEvent (String eventid) throws SQLException{
+		try{
+			
+				if(qb.deleteFrom("events").where("eventid", "=", eventid).Execute()){
+					return 1;
+				}else{
+					return 2;
+				}
+			}catch(SQLException e){
+					e.printStackTrace();
+					return 3;
+		}
+	}
+	
 	public boolean createuser(String userName, String password)throws SQLException{
 		String[] keys = {"email", "active", "password"}; //Der i DB at der skal oprettes
-		String[] values = {userName, "1", password}; //De værdier der skal oprettes med
+		String[] values = {userName, "1", password}; //De v��rdier der skal oprettes med
 		if(qb.insertInto("users", keys).values(values).Execute()){
 		return true;
 		}else{
