@@ -45,6 +45,31 @@ public class SwitchMethods extends Model
 		return false;
 		}
 	}
+
+	public String getEvent(String CalendarID) throws SQLException{
+		
+		String defaultreply = "This calender does not exist";
+		String reply = defaultreply;
+		qb = new QueryBuilder();
+		resultSet = qb.selectFrom("eventes").where("CalendarID", "=", CalendarID).ExecuteQuery();
+			if (resultSet.next()){
+				reply = resultSet.getString("eventID");
+			
+				reply = resultSet.getString("eventID"); //eventid =  row indeks?
+				reply += resultSet.getString("type");
+				reply += resultSet.getString("createdby");
+				reply += resultSet.getString("startTime");
+				reply += resultSet.getString("endTime");
+				reply += resultSet.getString("name");
+				reply += resultSet.getString("text");
+				reply += resultSet.getString("customevent");
+			
+			return reply;
+			} else {
+				return reply;
+			}
+			
+	}
 	
 	public boolean createEvent(String type, String location, String createdby, String startTime,
 			String endTime, String name, String text, String customEvent, String CalendarID) throws SQLException

@@ -1,6 +1,6 @@
 package JsonClasses;
 
-public class getEvents {
+public class getEvents implements java.io.Serializable{
 
 	private final long serialVersionUID = 2L;
 	private String overallID = "getEvents";
