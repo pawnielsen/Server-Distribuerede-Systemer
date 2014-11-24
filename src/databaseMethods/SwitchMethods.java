@@ -22,6 +22,31 @@ public class SwitchMethods extends Model
 	 * @throws SQLException
 	 */
 
+	public String getCalendar(String Calendar) throws SQLException{
+		String defaultreply = "Calendar was not found!";
+		String reply = null;
+		resultSet = qb.selectFrom("calendar").where("Name", "=", Calendar).ExecuteQuery();
+		try{
+		while(resultSet.next()){
+			reply =  resultSet.getString("CalendarID") + resultSet.getString("Name") + resultSet.getString("Active") +
+					resultSet.getString("Createdby") + resultSet.getString("PrivatePublic");
+			}
+			return reply;
+		}catch(SQLException e){
+			return defaultreply;
+		}
+	}
+	
+	public int deleteNote(int noteID) throws SQLException{
+		try{
+		Note note = new Note();
+			return note.DeleteNote(noteID);	
+		}catch (Exception e){
+			e.printStackTrace();
+			return 2;
+		}
+	}
+	
 	public int deleteEvent (String eventid) throws SQLException{
 		try{
 			
